@@ -45,6 +45,7 @@ using System.IO;
 using System.Windows.Forms;
 using ZedGraph;
 
+
 namespace SampleApp
 {
     /// <summary>
@@ -112,6 +113,7 @@ namespace SampleApp
             // Create the C4.5 learning algorithm
             var c45 = new C45Learning(variables);
 
+        
             // Learn the decision tree using C4.5
             tree = c45.Learn(inputs, outputs);
 
