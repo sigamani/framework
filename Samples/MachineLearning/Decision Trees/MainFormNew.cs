@@ -151,9 +151,9 @@ namespace SampleApp
             tree = c45.Learn(inputs, outputs);
 
 
-            var model = new Boost<CustomModel>();
-            var boost = new AdaBoost<CustomModel>(model);
-            var result = boost.Run(inputs,outputs);
+            //var model = new Boost<CustomModel>();
+            //var boost = new AdaBoost<CustomModel>(model);
+            //var result = boost.Run(inputs, outputs);
 
             // Show the learned tree in the view
             decisionTreeView1.TreeSource = tree;
@@ -182,7 +182,7 @@ namespace SampleApp
         /// 
         private void btnTestingRun_Click(object sender, EventArgs e)
         {
-            if (tree == null || dgvTestingSource.DataSource == null)
+            if (tree == null || dgvLearningSource.DataSource == null)
             {
                 MessageBox.Show("Please create a machine first.");
                 return;
@@ -194,9 +194,11 @@ namespace SampleApp
 
             // Get only the input vector values (first two columns)
             double[][] inputs = table.GetColumns(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17);
+     
 
             // Get the expected output labels (last column)
             int[] expected = table.GetColumn(18).ToInt32();
+
  
             // Compute the actual tree outputs
             int[] actual = tree.Decide(inputs);
@@ -229,6 +231,7 @@ namespace SampleApp
                     if (t.ShowDialog(this) == DialogResult.OK)
                     {
                         DataTable tableSource = db.GetWorksheet(t.Selection);
+                        DataTable tableSourceTest = db.GetWorksheet("FebMar2017"); 
 
                         double[,] sourceMatrix = tableSource.ToMatrix(out columnNames);
 
@@ -241,6 +244,7 @@ namespace SampleApp
                         {
                             this.dgvLearningSource.DataSource = tableSource;
                             this.dgvTestingSource.DataSource = tableSource.Copy();
+                            //this.dgvTestingSource.DataSource = tableSourceTest;
 
 
                             CreateScatterplot(graphInput, sourceMatrix);

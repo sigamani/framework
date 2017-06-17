@@ -108,6 +108,8 @@ namespace Components
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
 
@@ -119,11 +121,17 @@ namespace Components
             InitializeComponent();
 
             this.listBox1.DataSource = tables;
+         //   this.listBox2.DataSource = tables2;
         }
 
         public string Selection
         {
             get { return this.listBox1.SelectedItem as string; }
+        }
+
+        public string Selection2
+        {
+              get { return this.listBox2.SelectedItem as string; }
         }
     }
 }
